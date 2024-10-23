@@ -7,6 +7,7 @@ export const routes: Routes = [
   {path:'stackoverflow',component:StackoverflowPageComponent},
   {path:'question-details/:index',component:QuestionDetailComponent},
 
+  {path:'home',component:HomePageComponent},
   {path:'',component:HomePageComponent},
   {path:'*',component:HomePageComponent}
 ];
