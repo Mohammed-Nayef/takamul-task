@@ -8,7 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [MatIconModule,MatSidenavModule, MatButtonModule],
+  imports: [MatIconModule, MatButtonModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
     'mh-News',
     'mh-Projects',
     'mh-Transaction',
-    'mh-hBars'
+    'mh-hBars',
   ];
   isSidebarOpen:boolean=false;
   constructor(
