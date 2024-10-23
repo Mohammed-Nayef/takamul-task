@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="questions">
+    <div class="row">
+      <span class="heading"> Question Title </span>
+    </div>
+   
+    @for (question of tableData; track $index) {
+    <div class="row">
+      <div class="title">
+        {{question.title}}
+      </div>
+      <div class="details">
+        <a [routerLink]="['/question-details', $index]">
+          Details      
+          <mat-icon>chevron_right</mat-icon>
+        </a>
+      </div>
+    </div>
+    }
+  </div>
+</div>

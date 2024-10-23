@@ -1,0 +1,74 @@
+<app-nav></app-nav>
+<div class="container question-details">
+ 
+  <div class="owner-info">
+    <div class="image">
+      <img [src]="question.owner.profile_image" alt="" />
+    </div>
+    <div class="text">
+      <div class="title">Question Owner Information</div>
+      <div class="filed">
+        <span class="name">Name : </span> <span class="value"> {{question.owner.display_name}}</span>
+      </div>
+      <div class="filed">
+        <span class="name">User Id :</span> <span class="vlaue"> {{question.owner.account_id}} </span>
+      </div>
+      <div class="see-account">
+        <a [href]="question.owner.link" target="_blank">
+          Open {{ question.owner.display_name}} Account
+          <mat-icon>chevron_right</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="question-info ">
+    <h2 class="c-primary">Question Information</h2>
+    
+    <div class="heading">
+      <div class="title">Tags :</div>
+      <mat-chip-set class="tags">
+        @for (tag of question.tags; track $index) {
+        <mat-chip>
+          {{ tag }}
+        </mat-chip>
+        }
+      </mat-chip-set>
+      <div class="title">
+        Question Title :
+      </div>
+      <p >
+        {{question.title}}
+      </p>
+    </div>
+    <div class="fileds">
+      <div class="filed">
+        <div class="name">Status : </div>
+        <div class="value">@if (question.is_answered) { Answered }@else{ Not Answered }</div>
+      </div>
+        <!-- if ansowered number of ansowers -->
+        
+        <div class="filed">
+          <div class="name">Created At :</div>
+          <div class="value"> {{question.creation_date | date}}</div>
+        </div>
+        @if (question.is_answered) {
+        <div class="filed">
+          <div class="name">Number Of Answeres</div>
+          <div class="value"> {{question.answer_count}}</div>
+        </div>
+        }
+        <div class="filed">
+          <div class="name">Last Edit Date :</div>
+          <div class="value"> {{question.last_activity_date | date}}</div>
+        </div>
+
+    </div>
+    <div class="see-question">
+      <a [href]="question.link" target="_blank">
+        See Full Question
+        <mat-icon>chevron_right</mat-icon>
+
+      </a>
+    </div>
+  </div>
+</div>
