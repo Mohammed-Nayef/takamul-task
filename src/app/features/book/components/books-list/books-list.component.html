@@ -1,0 +1,77 @@
+<div class="container books-list">
+  <div class="fetched-books">
+    <form [formGroup]="searchFg" class="search">
+      <input formControlName="keyword" type="search" name="book-key" id="" />
+      <mat-icon>search</mat-icon>
+    </form>
+    <cdk-virtual-scroll-viewport #infiniteScoller itemSize="60" class="list">
+      @for (book of fetchedBooksList; track $index) {
+      <div class="box" (click)="addToDropList($index)">{{ book.title }}</div>
+      }
+    </cdk-virtual-scroll-viewport>
+    <div class="pagination"></div>
+  </div>
+
+  <div cdkDropList class="list" (cdkDropListDropped)="drop($event)">
+    @for (book of dropListData; track $index) {
+    <div class="box" cdkDrag>
+      {{ book.title }}
+      <button
+        class="cancel"
+        (click)="handelDragListDelete(dropListData.indexOf(book))"
+      >
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+    }
+  </div>
+
+  <div class="selected-books">
+    <div class="list" [style.background]="selectedBgColor">
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias unde
+        sequi illo minus delectus? Amet harum officiis ipsum obcaecati atque
+        natus et beatae? Exercitationem repellat, repudiandae cupiditate vitae
+        perspiciatis hic.
+      </p>
+      @for (book of dropListData; track $index) {
+      <div class="box">{{ book.title }}</div>
+      }
+    </div>
+    <div class="colors">
+      <button
+        class="color"
+        [style.background]="
+          'linear-gradient(to right top, #6bd1b6, #4fb7b2, #439da8, #438396, #45697f, #3f6075, #3a586c, #344f62, #275465, #165865, #025c61, #00605a)'
+        "
+        (click)="
+          changeBg(
+            'linear-gradient(to right top, #6bd1b6, #4fb7b2, #439da8, #438396, #45697f, #3f6075, #3a586c, #344f62, #275465, #165865, #025c61, #00605a)'
+          )
+        "
+      ></button>
+      <button
+        class="color"
+        [style.background]="
+          'linear-gradient(to right top, #7090fd, #7597f8, #7c9ef3, #84a4ee, #8daae8, #879fd6, #8194c4, #7b8ab3, #646d93, #4d5273, #373855, #222039)'
+        "
+        (click)="
+          changeBg(
+            'linear-gradient(to right top, #7090fd, #7597f8, #7c9ef3, #84a4ee, #8daae8, #879fd6, #8194c4, #7b8ab3, #646d93, #4d5273, #373855, #222039)'
+          )
+        "
+      ></button>
+      <button
+        class="color"
+        [style.background]="
+          'linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)'
+        "
+        (click)="
+          changeBg(
+            'linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)'
+          )
+        "
+      ></button>
+    </div>
+  </div>
+</div>
