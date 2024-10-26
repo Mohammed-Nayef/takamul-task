@@ -315,7 +315,7 @@ nav .toggole-sidebar{
   display: grid;
   margin-top: 20px;
   gap: 20px;
-  grid-template-columns: repeat(auto-fill,minmax(310px,1fr));
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
 }
 
 .projects-list .projects-wrapper .project{
@@ -737,3 +737,54 @@ nav .toggole-sidebar{
   height: 50px;
 }
 /* End books-list Componenet */
+
+/* Start Library-books-list Component */
+.lib-books .filter-buttons {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+.lib-books .filter-buttons button {
+  border-color: var(--primary-color);
+}
+.lib-books table{
+
+  border-radius: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.171);
+}
+.lib-books table tr:nth-child(even){
+  background-color: #eee;
+}
+.lib-books table thead{
+ color: var(--secondary-color);
+ font-weight: 500;
+ border-bottom: 1px solid var(--secondary-color);
+ 
+}
+.lib-books table th,
+.lib-books table td{
+  padding: 10px;
+  text-overflow: ellipsis;
+  width: calc(100% / 8);
+}
+.lib-books table td.tags{
+  padding: 0;
+}
+.lib-books table td span{
+  margin: 5px;
+  display: inline-block;
+  border: 1px solid var(--primary-color);
+  padding: 5px;
+  border-radius: 16px;
+  font-size: 14px;
+  color: var(--secondary-color);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.192);
+}
+.lib-books .filtered-by{
+  padding: 10px;
+  font-size: smaller;
+}
+
+/* End Library-books-list Component */

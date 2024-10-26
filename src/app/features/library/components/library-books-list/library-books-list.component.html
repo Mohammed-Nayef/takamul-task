@@ -1,0 +1,75 @@
+
+<!-- category sub category nested list -->
+ <main>
+ <div class="container lib-books">
+  <div class="filter-buttons">
+
+    <button mat-stroked-button [mat-menu-trigger-for]="categoriesMenu"> Fillter </button>
+    @if(filteredBy != ''){
+      <button mat-button (click)="clearFilter()">
+         Clear
+        <mat-icon>cancel</mat-icon>
+      </button>
+
+    }
+  </div>
+
+
+
+  <mat-menu  #categoriesMenu="matMenu">
+    @for (category of categories; track $index) {
+      <button mat-menu-item [mat-menu-trigger-for]="subcategoryMenu">{{category.name}}</button>
+      <mat-menu #subcategoryMenu="matMenu">
+        @for (subcategory of category.subcategories; track $index) {
+
+          <button mat-menu-item (click)="filterBySubcategory(subcategory.id,category.name,subcategory.name)">{{subcategory.name}}</button>
+        }
+      </mat-menu>
+
+    }
+  </mat-menu>
+
+ <table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category Name</th>
+      <th>Subcategory Name</th>
+      <th>Tags</th>
+      <th>Publishing Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (book of filteredBooks; track $index) {
+      <tr>
+        <td>{{book.id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.description}}</td>
+        <td>{{book.categoryName}}</td>
+        <td>{{book.subcategoryName}}</td>
+        <td class="tags">
+          @for (tag of book.tags; track $index) {
+            <span>{{tag}}</span>
+          }
+        </td>
+        <td>{{book.publishedDate| date}}</td>
+      </tr>
+    }
+   
+  </tbody>
+ </table>
+ <div class="filtered-by">
+  @if (filteredBy != '') {
+
+    Filttered By : {{filteredBy}}
+  }
+ </div>
+
+
+ </div>
+
+ </main>
+<!-- filtter button -->
+ <!-- books table  -->
