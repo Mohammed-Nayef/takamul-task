@@ -1,11 +1,11 @@
 <div class="container books-list">
   <div class="fetched-books">
-    <form [formGroup]="searchFg" class="search">
+    <form [formGroup]="searchFg" class="search" (ngSubmit)="onSearchSubmit()">
       <input formControlName="keyword" type="search" name="book-key" id="" />
       <mat-icon>search</mat-icon>
     </form>
     <cdk-virtual-scroll-viewport #infiniteScoller itemSize="60" class="list">
-      @for (book of fetchedBooksList; track $index) {
+      @for (book of filteredBooksList; track $index) {
       <div class="box" (click)="addToDropList($index)">{{ book.title }}</div>
       }
     </cdk-virtual-scroll-viewport>

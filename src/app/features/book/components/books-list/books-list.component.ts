@@ -69,6 +69,7 @@ export class BooksListComponent implements OnInit, AfterViewInit {
   dropListData: Book[] = [];
 
   currentPage: number = 0;
+  filteredBooksList:Book[]=[]
 
   searchFg!: SearchForm;
   @ViewChild(CdkVirtualScrollViewport)
@@ -107,6 +108,7 @@ export class BooksListComponent implements OnInit, AfterViewInit {
     // fetch and assign the fetched and filltered lists
     this.booksService.getBooks().subscribe((res) => {
       this.fetchedBooksList = res.docs;
+      this.filteredBooksList = res.docs
     });
 
     this.searchFg = this.fb.group({
@@ -135,10 +137,23 @@ export class BooksListComponent implements OnInit, AfterViewInit {
   }
 
   onSearchChange(keyword: string) {
-    this.currentPage = 1;
-    this.booksService
-      .getBooks(keyword)
-      .subscribe((res) => (this.fetchedBooksList = res.docs));
+    // API search doesn't work 
+    
+    // this.currentPage = 1;
+    // this.booksService
+    //   .getBooks(keyword)
+    //   .subscribe((res) => (this.fetchedBooksList = res.docs));
+    
+    
+    // Local search used instead
+    this.filteredBooksList = this.fetchedBooksList.filter(book => book.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()))
+    console.log('filtered by ', keyword , this.filteredBooksList.length,this.fetchedBooksList.length)
+  }
+
+  onSearchSubmit(){
+    let keyword = this.searchFg.controls.keyword.value
+    
+    this.onSearchChange(keyword)
   }
 
   loadMoreItems() {
@@ -146,7 +161,7 @@ export class BooksListComponent implements OnInit, AfterViewInit {
     this.booksService
       .getBooks(this.searchFg.controls.keyword.value, this.currentPage)
       .subscribe((res) => {
-        this.fetchedBooksList = res.docs;
+        this.fetchedBooksList.push(...res.docs)
       });
   }
 
